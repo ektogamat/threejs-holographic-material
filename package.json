@@ -1,0 +1,33 @@
+{
+  "name": "holographic-material",
+  "version": "1.0.0",
+  "description": "This component, created by Anderson Mancini, represents a holographic material in a Three.js environment.",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "@react-three/drei": "9.88.17",
+    "@react-three/fiber": "8.15.11",
+    "@react-three/postprocessing": "2.15.11",
+    "@types/three": "0.150.2",
+    "leva": "0.9.34",
+    "maath": "0.5.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-scripts": "5.0.1",
+    "three": "0.158.0",
+    "vercel": "^32.5.6"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "deploy": "vercel --prod"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

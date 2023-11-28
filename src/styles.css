@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Moirai+One&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  color: white;
+  background-color: black;
+}
+
+body {
+  overscroll-behavior: none;
+  background: #f5f5f5;
+  color: black;
+  font-family: Arial, sans-serif;
+  cursor: url('https://github.com/chenglou/react-motion/raw/master/demos/demo8-draggable-list/cursor.png')
+      39 39,
+    auto;
+}
+
+a {
+  color: white;
+}
+
+a {
+  pointer-events: all;
+  color: white;
+  text-decoration: none;
+}
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  align-self: center;
+  background-image: radial-gradient(
+    circle at bottom,
+    rgb(43, 101, 105) 0%,
+    rgba(0, 0, 0, 0) 51%
+  );
+  text-align: center;
+}
+
+.main-title {
+  width: 80%;
+  position: relative;
+  bottom: 7%;
+}
+
+.main-title p {
+  width: 60%;
+}
+
+h1 {
+  font-family: 'Moirai One', cursive;
+  font-size: 9vw;
+  letter-spacing: -0.1vw;
+  line-height: 0.8em;
+  width: 95%;
+  text-align: center;
+}
+
+h2 {
+  font-family: sans-serif;
+  font-size: 1em;
+  opacity: 0.5;
+  font-weight: lighter;
+  margin-top: 4vw;
+}
+
+.buttons {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+button {
+  padding: 16px 26px;
+  border: none;
+  font-size: 0.7em;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.818);
+  backdrop-filter: blur(5px);
+  color: rgb(2, 58, 61);
+  cursor: pointer;
+  pointer-events: all;
+  transition: all 0.6s ease-in-out;
+}
+
+button:hover {
+  background-color: rgba(0, 255, 255, 0.381);
+  box-shadow: 0 0 20px cyan;
+  transform: scale(1.05);
+  color: rgb(88, 247, 255);
+}
+
+button:disabled {
+  opacity: 0.15;
+  pointer-events: none;
+}
