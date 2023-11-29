@@ -29,10 +29,6 @@ body {
 }
 
 a {
-  color: white;
-}
-
-a {
   pointer-events: all;
   color: white;
   text-decoration: none;
@@ -60,11 +56,11 @@ a {
 .main-title {
   width: 80%;
   position: relative;
-  bottom: 7%;
+  bottom: 5%;
 }
 
 .main-title p {
-  width: 60%;
+  margin-top: 8px;
 }
 
 h1 {
@@ -74,6 +70,7 @@ h1 {
   line-height: 0.8em;
   width: 95%;
   text-align: center;
+  padding-bottom: 20px;
 }
 
 h2 {

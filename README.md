@@ -90,6 +90,13 @@ Then you can just spread this object to use it in HolographicMaterial
 
 Here you can [see a video with](https://www.youtube.com/watch?v=njJc-O_imb4) it in action and some options
 
+### Next steps
+
+- Adding an optional glitch effect
+- Adding support for a vertex shader distortion glitch
+- Adding support for video textures to be mapped as planes
+- Convert the shader into a texture on runtime for better performance
+
 ### License
 
 This component is an open-source creation released under the (MIT) license. While you're free to integrate and innovate with it, I would genuinely appreciate knowing when this HolographicMaterial component sparks creativity in your projects!
