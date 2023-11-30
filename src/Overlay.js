@@ -18,7 +18,7 @@ export default function Overlay() {
           <button disabled>VANILLA THREE.JS COMMING SOON</button>
         </div>
 
-        <h2>
+        <footer>
           <p>
             New Three.js Material by{' '}
             <a href='https://andersonmancini.dev'>Anderson Mancini</a>  - Credits:
@@ -42,7 +42,7 @@ export default function Overlay() {
               BB8
             </a>
           </p>
-        </h2>
+        </footer>
       </div>
     </div>
   )

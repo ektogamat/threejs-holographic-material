@@ -5,7 +5,7 @@
 import React, { useRef } from "react";
 import { shaderMaterial } from "@react-three/drei";
 import { extend, useFrame } from "@react-three/fiber";
-import { Color, FrontSide, AdditiveBlending } from "three";
+import { Color, FrontSide, BackSide, DoubleSide, AdditiveBlending, NormalBlending } from "three";
 
 /**
  * @param {Number} fresnelAmount - Controls the value of the Fresnel effect. Ranges from 0.0 to 1.0.
@@ -14,7 +14,11 @@ import { Color, FrontSide, AdditiveBlending } from "three";
  * @param {Number} hologramBrightness - Controls the brightness of the hologram. Ranges from 0.0 to 2.0.
  * @param {Number} signalSpeed - Controls the speed of the signal effect. Ranges from 0.0 to 2.0.
  * @param {String} hologramColor - Specifies the color of the hologram. Use hexadecimal format.
+ * @param {Number} hologramOpacity - Specifies the opacity of the hologram. Defaults to 1.0.
  * @param {Boolean} enableBlinking - Enables or disables the blinking effect. Defaults to true.
+ * @param {Boolean} blinkFresnelOnly - Enables or disables the blinking effect for the Fresnel only. Defaults to true.
+ * @param {Boolean} enableAdditive - Enables or disables the Additive Blend Mode. Defaults to true.
+ * @param {String} side - Specifies side for the material, as String. Options are "FrontSide", "BackSide", "DoubleSide". Defaults to "FrontSide".
  */
 
 export default function HolographicMaterial({
@@ -25,6 +29,10 @@ export default function HolographicMaterial({
     signalSpeed = 0.45,
     hologramColor = "#51a4de",
     enableBlinking = true,
+    blinkFresnelOnly = true,
+    enableAdditive = true,
+    hologramOpacity = 1.0,
+    side = "FrontSide"
     }) {
 
   const HolographicMaterial = shaderMaterial(
@@ -37,6 +45,8 @@ export default function HolographicMaterial({
       signalSpeed: signalSpeed,
       hologramColor: new Color(hologramColor),
       enableBlinking: enableBlinking,
+      blinkFresnelOnly: blinkFresnelOnly,
+      hologramOpacity: hologramOpacity
     },
     /*GLSL */
     `
@@ -51,47 +61,42 @@ export default function HolographicMaterial({
       varying vec3 vNormalW;
       varying vec3 vPositionW;
 
+      #include <common>
       #include <uv_pars_vertex>
-      #include <displacementmap_pars_vertex>
+      #include <envmap_pars_vertex>
       #include <color_pars_vertex>
       #include <fog_pars_vertex>
-      #include <normal_pars_vertex>
       #include <morphtarget_pars_vertex>
       #include <skinning_pars_vertex>
-      #include <shadowmap_pars_vertex>
       #include <logdepthbuf_pars_vertex>
       #include <clipping_planes_pars_vertex>
 
       void main() {
         
         #include <uv_vertex>
-
         #include <color_vertex>
         #include <morphcolor_vertex>
-        #include <beginnormal_vertex>
-        #include <morphnormal_vertex>
-        #include <skinbase_vertex>
-        #include <skinnormal_vertex>
       
-        vec3 newPosition = position;
-
-        #include <defaultnormal_vertex>
-        #include <normal_vertex>
+        #if defined ( USE_ENVMAP ) || defined ( USE_SKINNING )
+      
+          #include <beginnormal_vertex>
+          #include <morphnormal_vertex>
+          #include <skinbase_vertex>
+          #include <skinnormal_vertex>
+          #include <defaultnormal_vertex>
+      
+        #endif
+      
         #include <begin_vertex>
         #include <morphtarget_vertex>
         #include <skinning_vertex>
-        #include <displacementmap_vertex>
         #include <project_vertex>
         #include <logdepthbuf_vertex>
         #include <clipping_planes_vertex>
-        vViewPosition = - mvPosition.xyz;
-
+      
         #include <worldpos_vertex>
-        #include <shadowmap_vertex>
+        #include <envmap_vertex>
         #include <fog_vertex>
-        #ifdef USE_TRANSMISSION
-          vWorldPosition = worldPosition.xyz;
-        #endif
 
         mat4 modelViewProjectionMatrix = projectionMatrix * modelViewMatrix;
 
@@ -116,6 +121,8 @@ export default function HolographicMaterial({
       uniform float fresnelAmount;
       uniform float signalSpeed;
       uniform float hologramBrightness;
+      uniform float hologramOpacity;
+      uniform bool blinkFresnelOnly;
       uniform bool enableBlinking;
       uniform vec3 hologramColor;
 
@@ -157,7 +164,15 @@ export default function HolographicMaterial({
         float blink = flicker(blinkValue, time * signalSpeed * .02);
     
         // Final shader composition
-        gl_FragColor = vec4( scanlineMix.rgb + fresnelEffect * blink, 1.0);
+        vec3 finalColor;
+
+        if(blinkFresnelOnly){
+          finalColor = scanlineMix.rgb + fresnelEffect * blink;
+        }else{
+          finalColor = scanlineMix.rgb * blink + fresnelEffect;
+        }
+
+        gl_FragColor = vec4( finalColor, hologramOpacity);
 
       }`,
   );
@@ -173,9 +188,9 @@ export default function HolographicMaterial({
   return (
     <holographicMaterial
       key={HolographicMaterial.key}
-      side={FrontSide}
+      side={side ==='DoubleSide' ? DoubleSide : side ==='BackSide'? BackSide : FrontSide}
       transparent={true}
-      blending={AdditiveBlending}
+      blending={enableAdditive ? AdditiveBlending : NormalBlending}
       ref={ref}
     />
   );

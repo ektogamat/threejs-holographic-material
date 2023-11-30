@@ -26,6 +26,7 @@ export default function Walker({ holographicControls }, props) {
       <group name="Sketchfab_Scene">
         <primitive object={nodes._rootJoint} />
         <skinnedMesh
+        castShadow
           name="Object_44"
           geometry={nodes.Object_44.geometry}
           //   material={materials.Bake1}
@@ -36,6 +37,7 @@ export default function Walker({ holographicControls }, props) {
           <HolographicMaterial {...holographicControls} />
         </skinnedMesh>
         <skinnedMesh
+        castShadow
           name="Object_46"
           geometry={nodes.Object_46.geometry}
           //   material={materials.Bake2}
@@ -46,6 +48,7 @@ export default function Walker({ holographicControls }, props) {
           <HolographicMaterial {...holographicControls} />
         </skinnedMesh>
         <skinnedMesh
+        castShadow
           name="Object_48"
           geometry={nodes.Object_48.geometry}
           //   material={materials.Bake1}
@@ -56,6 +59,7 @@ export default function Walker({ holographicControls }, props) {
           <HolographicMaterial  {...holographicControls} />
         </skinnedMesh>
         <skinnedMesh
+        castShadow
           name="Object_50"
           geometry={nodes.Object_50.geometry}
           //   material={materials.Bake4}
@@ -66,6 +70,7 @@ export default function Walker({ holographicControls }, props) {
           <HolographicMaterial {...holographicControls} />
         </skinnedMesh>
         <skinnedMesh
+        castShadow
           name="Object_52"
           geometry={nodes.Object_52.geometry}
           //   material={materials.Bake1}
@@ -76,6 +81,7 @@ export default function Walker({ holographicControls }, props) {
           <HolographicMaterial  {...holographicControls} hologramColor={"#00ff00"} />
         </skinnedMesh>
         <skinnedMesh
+        castShadow
           name="Object_54"
           geometry={nodes.Object_54.geometry}
           //   material={materials.Bake3}

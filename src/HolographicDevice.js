@@ -22,10 +22,14 @@ export default function HolographicDevice(props) {
     scanlineSize: { value: 8.0, min: 1.0, max: 15, label: "Scanline size" },
     hologramBrightness: { value: 1.2, min: 0.0, max: 2, label: "Brightness" },
     signalSpeed: { value: 0.45, min: 0.0, max: 2, label: "Signal Speed" },
-    hologramColor: { value: "#51a4de", label: "Hologram Color" },
+    hologramOpacity: { value: 1.0, min: 0.0, max: 1.0, label: "Holo Opacity" },
+    hologramColor: { value: "#51a4de", label: "Holo Color" },
     enableBlinking: true,
+    blinkFresnelOnly: true,
+    enableAdditive: true,
     enabled: true,
     Model: { options: ["VADER", "BB8", "WALKER"] },
+    side: { options: ["FrontSide", "BackSide", "DoubleSide"] },
   });
 
   return (
@@ -37,7 +41,7 @@ export default function HolographicDevice(props) {
         floatingRange={[-0.03, 0.03]}
       >
         {holographicControls.Model === "VADER" ? (
-          <mesh geometry={nodes.defaultMaterial.geometry} scale={0.035}>
+          <mesh geometry={nodes.defaultMaterial.geometry} castShadow scale={0.035}>
             {holographicControls.enabled ? (
               <HolographicMaterial  {...holographicControls} />
             ) : (
@@ -58,7 +62,7 @@ export default function HolographicDevice(props) {
         )}
       </Float>
 
-      <HoloPuck scale={1.8} position={[0, -1.3, 0]} />
+      <HoloPuck scale={2.5} position={[0, -1.3, 0]} />
     </group>
   );
 }

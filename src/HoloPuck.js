@@ -9,13 +9,13 @@ Title: Holo-Puck
 */
 
 import React, { useRef } from "react";
-import { useGLTF } from "@react-three/drei";
+import { Plane, Sphere, useGLTF } from "@react-three/drei";
 
 export default function HoloPuck(props) {
   const { nodes, materials } = useGLTF("/holo-puck-transformed.glb");
 
-  materials.Material.envMapIntensity = 0.8;
-  materials.Material.emissiveIntensity = 0.3;
+  materials.Material.envMapIntensity = 0.6;
+  materials.Material.emissiveIntensity = 0.05;
 
   return (
     <group {...props} dispose={null}>
@@ -24,6 +24,7 @@ export default function HoloPuck(props) {
         material={materials.Material}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={[2.972, 2.972, 0.396]}
+        receiveShadow
       />
     </group>
   );

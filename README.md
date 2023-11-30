@@ -42,15 +42,20 @@ That's all that you need to use this component. Of course you can customize it a
 
 # Properties
 
-| Name               | Type    | Default   | Description                                                         |
-| ------------------ | ------- | --------- | ------------------------------------------------------------------- |
-| fresnelAmount      | Number  | 0.45      | Controls the value of the Fresnel effect. Ranges from 0.0 to 1.0.   |
-| fresnelOpacity     | Number  | 1.0       | Controls the opacity of the Fresnel effect. Ranges from 0.0 to 1.0. |
-| scanlineSize       | Number  | 8.0       | Controls the size of the scanlines. Ranges from 1 to 15.            |
-| hologramBrightness | Number  | 1.2       | Controls the brightness of the hologram. Ranges from 0.0 to 2.0.    |
-| signalSpeed        | Number  | 0.45      | Controls the speed of the signal effect. Ranges from 0.0 to 2.0.    |
-| hologramColor      | String  | "#51a4de" | Specifies the color of the hologram. Use hexadecimal format.        |
-| enableBlinking     | Boolean | true      | Enables or disables the blinking effect. Defaults to true.          |
+| Name               | Type    | Default     | Description                                                                                                             |
+| ------------------ | ------- | ----------- | ----------------------------------------------------------------------------------------------------------------------- |
+| fresnelAmount      | Number  | 0.45        | Controls the value of the Fresnel effect. Ranges from 0.0 to 1.0.                                                       |
+| fresnelOpacity     | Number  | 1.0         | Controls the opacity of the Fresnel effect. Ranges from 0.0 to 1.0.                                                     |
+| scanlineSize       | Number  | 8.0         | Controls the size of the scanlines. Ranges from 1 to 15.                                                                |
+| hologramBrightness | Number  | 1.2         | Controls the brightness of the hologram. Ranges from 0.0 to 2.0.                                                        |
+| signalSpeed        | Number  | 0.45        | Controls the speed of the signal effect. Ranges from 0.0 to 2.0.                                                        |
+| hologramColor      | String  | "#51a4de"   | Specifies the color of the hologram. Use hexadecimal format.                                                            |
+| enableBlinking     | Boolean | true        | Enables or disables the blinking effect. Defaults to true.                                                              |
+| hologramOpacity    | Number  | 1.0         | Specifies the opacity of the hologram. Defaults to 1.0.                                                                 |
+| enableBlinking     | Boolean | true        | Enables or disables the blinking effect. Defaults to true.                                                              |
+| blinkFresnelOnly   | Boolean | true        | Enables or disables the blinking effect for the Fresnel only. Defaults to true.                                         |
+| enableAdditive     | Boolean | true        | Enables or disables the Additive Blend Mode. Defaults to true.                                                          |
+| side               | String  | "FrontSide" | Specifies side for the material, as String. Options are "FrontSide", "BackSide", "DoubleSide". Defaults to "FrontSide". |
 
 Here is an example of how you can pass these props. If you pass any of those props, the default values will be overwritten.
 
@@ -62,7 +67,11 @@ Here is an example of how you can pass these props. If you pass any of those pro
     scanlineSize={6}
     signalSpeed={2.3}
     hologramColor={"#ff0000"}
-    enableBlinking={false}
+    hologramOpacity=1.0
+    blinkFresnelOnly={true}
+    enableBlinking={true}
+    enableAdditive={true}
+    side={"FrontSide"}
 />
 ```
 
@@ -70,13 +79,17 @@ You can also use LEVA to create a panel, like in the demo, so you can tweak the 
 
 ```
   const holographicControls = useControls({
-    fresnelAmount: { value: 0.45, min: 0.0, max: 1.0 },
-    fresnelOpacity: { value: 1.0, min: 0.0, max: 1.0 },
-    scanlineSize: { value: 8.0, min: 1.0, max: 15 },
-    hologramBrightness: { value: 1.2, min: 0.0, max: 2 },
-    signalSpeed: { value: 0.45, min: 0.0, max: 2 },
-    hologramColor: { value: "#51a4de" },
+    fresnelAmount: { value: 0.45, min: 0.0, max: 1.0},
+    fresnelOpacity: { value: 1.0,min: 0.0, max: 1.0},
+    scanlineSize: { value: 8.0, min: 1.0, max: 15},
+    hologramBrightness: { value: 1.2, min: 0.0, max: 2},
+    signalSpeed: { value: 0.45, min: 0.0, max: 2},
+    hologramOpacity: { value: 1.0, min: 0.0, max: 1.0},
+    hologramColor: { value: "#51a4de"},
     enableBlinking: true,
+    blinkFresnelOnly: true,
+    enableAdditive: true,
+    side: { options: ["FrontSide", "BackSide", "DoubleSide"] },
   });
 ```
 
