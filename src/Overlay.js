@@ -15,13 +15,24 @@ export default function Overlay() {
           >
             DOWNLOAD FOR REACT THREE FIBER
           </button>
-          <button disabled>VANILLA THREE.JS COMMING SOON</button>
+
+          <button
+            onClick={() => {
+              window.open(
+                ' https://github.com/ektogamat/threejs-vanilla-holographic-material',
+                'tab'
+              )
+            }}
+          >
+            DOWNLOAD FOR VANILLA THREE.JS
+          </button>
         </div>
 
         <footer>
           <p>
             New Three.js Material by{' '}
-            <a href='https://andersonmancini.dev'>Anderson Mancini</a>  - Credits:
+            <a href='https://andersonmancini.dev'>Anderson Mancini</a> -
+            Credits:
             <a
               href='https://sketchfab.com/3d-models/star-wars-darth-vader-3d-printable-6077450fdd9d4da199d438d622c0e1ee'
               target='_blank'
