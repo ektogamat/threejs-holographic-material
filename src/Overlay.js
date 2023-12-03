@@ -2,7 +2,7 @@ export default function Overlay() {
   return (
     <div className='container'>
       <div className='main-title'>
-        <h1>Holographic</h1>
+        <h1>HOLOGRAPHIC</h1>
 
         <div className='buttons'>
           <button
