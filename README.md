@@ -57,8 +57,7 @@ That's all that you need to use this component. Of course you can customize it a
 | enableBlinking     | Boolean | true        | Enables or disables the blinking effect. Defaults to true.                                                              |
 | hologramOpacity    | Number  | 1.0         | Specifies the opacity of the hologram. Defaults to 1.0.                                                                 |
 | enableBlinking     | Boolean | true        | Enables or disables the blinking effect. Defaults to true.                                                              |
-| blinkFresnelOnly   | Boolean | true        | Enables or disables the blinking effect for the Fresnel only. Defaults to true.                                         |
-| enableAdditive     | Boolean | true        | Enables or disables the Additive Blend Mode. Defaults to true.                                                          |
+| blinkFresnelOnly   | Boolean | true        | Enables or disables the blinking effect for the Fresnel only. Defaults to true.                                                      |
 | side               | String  | "FrontSide" | Specifies side for the material, as String. Options are "FrontSide", "BackSide", "DoubleSide". Defaults to "FrontSide". |
 
 Here is an example of how you can pass these props. If you pass any of those props, the default values will be overwritten.
