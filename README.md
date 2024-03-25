@@ -70,7 +70,7 @@ Here is an example of how you can pass these props. If you pass any of those pro
     scanlineSize={6}
     signalSpeed={2.3}
     hologramColor={"#ff0000"}
-    hologramOpacity=1.0
+    hologramOpacity={1.0}
     blinkFresnelOnly={true}
     enableBlinking={true}
     enableAdditive={true}
